@@ -1,0 +1,6 @@
+[submodule "tfg-frontend"]
+	path = tfg-frontend
+	url = https://github.com/Cabanesdev/tfg-frontend
+[submodule "tfg-backend"]
+	path = tfg-backend
+	url = https://github.com/Cabanesdev/tfg-backend
