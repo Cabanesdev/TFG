@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo
+    command: mongod --quiet --logpath /dev/null
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./db:/data/db
+    ports:
+      - 27018:27017
+    restart: unless-stopped
+  server:
+    build: './tfg-backend'
+    volumes:
+      - ./tfg-backend:/src
+    ports:
+      - '3000:3000'
+    container_name: server
+    depends_on:
+      - mongodb
+  client:
+    image: nginx
+    container_name: react
+    ports:
+      - 8000:80
+    volumes:
+      - ./tfg-frontend/build:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
