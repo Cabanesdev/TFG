@@ -1,0 +1,7 @@
+api.cabanesdev.tk {
+  reverse_proxy server:3000
+}
+
+codex.cabanesdev.tk {
+  reverse_proxy client:80
+}
